@@ -1,0 +1,21 @@
+spring:
+  security:
+    oauth2:
+      client:
+        registration:
+          google:
+            client-id: ${GOOGLE_CLIENT_ID}
+            client-secret: ${GOOGLE_CLIENT_SECRET}
+            scope: openid, profile, email
+        provider:
+          google:
+            issuer-uri: https://accounts.google.com #OpenID Connect (OIDC) NO TRADICIONAL CON OAUTH 2
+            #authorization-uri: https://accounts.google.com/o/oauth2/v2/auth
+            #token-uri: https://www.googleapis.com/oauth2/v4/token
+            #user-info-uri: https://www.googleapis.com/oauth2/v3/userinfo
+            #user-name-attribute: sub
+
+#Cuando el flujo no es tradicional y es con OpenID Connect (OIDC), no se puede usar tokens para que viaje, ya que estos se incorporan
+#a la sesion y viajan a traves de la sesion
+#Cuando el flujo es tradicional y es con OAUTH 2, se configuran manualmente los endpoint de intercambio de codigo y el token se une a la
+#sesion y la sesion es la que accedera a los endpoints
